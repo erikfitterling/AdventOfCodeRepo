@@ -9,14 +9,16 @@ namespace AdventOfCode
     public class Map
     {
         public char[,] map { get; set; }
-        public int MLength;
-        public int MHeight;
+        public int MLength { get; set; }
+        public int MHeight { get; set; }
+        public string Line { get; set; }
 
-        public Map(char[,] mmap, int height) 
+        public Map(int height, int length, string line) 
         {
-            map= mmap;
-            MLength= mmap.Length;
+            MLength= length;
             MHeight= height;
+            Line= line;
+            map = new char[height, length];
         }
     }
 }

@@ -10,9 +10,11 @@ namespace AdventOfCode
     public class Run
     {
         private StartUp startUp;
-        public Run( StartUp start) 
+        private Map map;
+        public Run( StartUp start, Map mmap) 
         {
             startUp = start;
+            map = mmap;
             
         }
         public void Update()
@@ -29,7 +31,7 @@ namespace AdventOfCode
                     case Direction.Left:
                         if (su.X == 1)
                         {
-                            su.X = startUp.map.GetLength(1) - 1;
+                            su.X = map.map.GetLength(1) - 1;
                             CheckPositionNew(su);
                         }
                         else
@@ -39,7 +41,7 @@ namespace AdventOfCode
                         }
                         break;
                     case Direction.Right:
-                        if (su.X == startUp.map.GetLength(1) -1)
+                        if (su.X == map.map.GetLength(1) -1)
                         {
                             su.X = 1;
                             CheckPositionNew(su);
@@ -54,7 +56,7 @@ namespace AdventOfCode
                     case Direction.Up:
                         if (su.Y == 1)
                         {
-                            su.Y = startUp.y - 1;
+                            su.Y = map.MHeight - 1;
                             CheckPositionNew(su);
                         }
                         else
@@ -64,14 +66,14 @@ namespace AdventOfCode
                         }
                         break;
                     case Direction.Down:
-                        if (su.Y == startUp.y - 1)
+                        if (su.Y == map.MHeight - 1)
                         {
                             su.Y = 1;
                             CheckPositionNew(su);
                         }
                         else
                         {
-                            su.Y = startUp.y - 1;
+                            su.Y = map.MHeight - 1;
                             CheckPositionNew(su);
                         }
                         break;
@@ -79,41 +81,41 @@ namespace AdventOfCode
 
                 
             }
-            startUp.Print();
+            startUp.PrintMap();
         }
 
         public void CheckPosition(Blizzard su)
         {
-            if (Char.IsDigit(startUp.map[su.Y, su.X]))
+            if (Char.IsDigit(map.map[su.Y, su.X]))
             {
-                if (startUp.map[su.Y, su.X] == '2')
+                if (map.map[su.Y, su.X] == '2')
                 {
-                    startUp.map[su.Y, su.X] = su.Sign;
+                    map.map[su.Y, su.X] = su.Sign;
                 }
                 else
                 {
-                    startUp.map[su.Y, su.X]--;
+                    map.map[su.Y, su.X]--;
                 }
             }
             else
             {
-                startUp.map[su.Y, su.X] = '.';
+                map.map[su.Y, su.X] = '.';
             }
         }
 
         public void CheckPositionNew(Blizzard su)
         {
-            if (Char.IsDigit(startUp.map[su.Y, su.X]))
+            if (Char.IsDigit(map.map[su.Y, su.X]))
             {
-                startUp.map[su.Y, su.X]++;
+                map.map[su.Y, su.X]++;
             }
-            else if(startUp.map[su.Y, su.X] == '.')
+            else if(map.map[su.Y, su.X] == '.')
             {
-                startUp.map[su.Y, su.X] = su.Sign;
+                map.map[su.Y, su.X] = su.Sign;
             }
             else
             {
-                startUp.map[su.Y, su.X] = '2';
+                map.map[su.Y, su.X] = '2';
             }
         }
 

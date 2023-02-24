@@ -1,2 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using AdventOfCode;
+
+StartUp startUp= new StartUp();
+//Run run = new Run(startUp, startUp.map);
